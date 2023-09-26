@@ -28,6 +28,6 @@ public class NegotiationImpl implements NegotiationService {
 
     @Override
     public Negotiation createNegotiation(Negotiation negotiation) {
-        return null;
+        return this.negotiationRepository.save(negotiation);
     }
 }

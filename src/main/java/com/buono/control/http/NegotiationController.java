@@ -22,9 +22,13 @@ public class NegotiationController {
     private NegotiationService negotiationService;
 
     @GetMapping("/findNegotiations")
-    public ResponseEntity<?> negotiations(@RequestParam NegotiationSearch negotiationSearch) {
-        return new ResponseEntity<List<Negotiation>>(
-                this.negotiationService.negotiations(negotiationSearch), HttpStatus.OK);
+    public ResponseEntity<?> negotiations(NegotiationSearch negotiationSearch) {
+        try {
+            return new ResponseEntity<List<Negotiation>>(
+                    this.negotiationService.negotiations(negotiationSearch), HttpStatus.OK);
+        } catch(Exception exception){
+            return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/createNegotiation")

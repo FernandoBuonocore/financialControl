@@ -1,7 +1,7 @@
 package com.buono.control.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.buono.control.model.modelEnum.TypeAssetEnum;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -9,6 +9,12 @@ import lombok.Data;
 public class Assets {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
     private String name;
+    private String description;
+
+    @Enumerated
+    private TypeAssetEnum typeAssetEnum;
 }
