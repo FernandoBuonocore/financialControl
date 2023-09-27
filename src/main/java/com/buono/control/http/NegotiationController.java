@@ -3,6 +3,7 @@ package com.buono.control.http;
 import com.buono.control.model.Negotiation;
 import com.buono.control.search.NegotiationSearch;
 import com.buono.control.service.NegotiationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class NegotiationController {
     }
 
     @PostMapping("/createNegotiation")
-    public ResponseEntity<?> createNegotiations(@RequestBody Negotiation negotiation){
+    public ResponseEntity<?> createNegotiations(@Valid @RequestBody Negotiation negotiation){
         Negotiation createdNegotiation = this.negotiationService.createNegotiation(negotiation);
         return new ResponseEntity<Negotiation>(createdNegotiation, HttpStatus.OK);
     }
